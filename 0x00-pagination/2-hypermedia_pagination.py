@@ -43,7 +43,8 @@ class Server:
         return data_f
 
     def get_hyper(self, page: int = 1,
-                  page_size: int = 10) -> Dict[str, Union[int, List[List], None]]:
+                  page_size: int = 10) -> Dict[str,
+                                               Union[int, List[List], None]]:
         """Generate the hypermedia for the pages"""
 
         data = self.get_page(page=page, page_size=page_size)
