@@ -38,7 +38,8 @@ class Server:
         data_f = data[s:e]
 
         try:
-            if e >= len(data):
+            length = len(data)
+            if e >= length or s >= length:
                 raise IndexError
             return data_f
         except IndexError:
