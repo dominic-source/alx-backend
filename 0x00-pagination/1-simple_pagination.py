@@ -36,14 +36,10 @@ class Server:
         s, e = index_range(page, page_size)
         data = self.dataset()
         data_f = data[s:e]
-
-        try:
-            length = len(data) - 1
-            if e > length or s > length:
-                raise IndexError
-            return data_f
-        except IndexError:
+        length = len(data) - 1
+        if e > length + 1 or s > length:
             return []
+        return data_f
 
 
 def index_range(page: int, page_size: int) -> Tuple[int, int]:
