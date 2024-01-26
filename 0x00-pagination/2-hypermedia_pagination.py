@@ -5,7 +5,7 @@
 from typing import Tuple
 import csv
 import math
-from typing import List, Mapping
+from typing import List, Mapping, Dict, Union
 
 
 class Server:
@@ -43,7 +43,7 @@ class Server:
         return data_f
 
     def get_hyper(self, page: int = 1,
-                  page_size: int = 10) -> dict[str, object]:
+                  page_size: int = 10) -> Dict[str, Union[int, List[List], None]]:
         """Generate the hypermedia for the pages"""
 
         data = self.get_page(page=page, page_size=page_size)
