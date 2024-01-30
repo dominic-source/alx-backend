@@ -16,7 +16,7 @@ class LRUCache(BaseCaching):
 
     def put(self, key, item):
         """Put item into the cache implementing the
-        FIFO caching algorithm"""
+        LRU caching algorithm"""
         if key and item:
             self.cache_data.pop(key, None)
             self.cache_data[key] = item

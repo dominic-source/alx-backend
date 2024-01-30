@@ -16,7 +16,7 @@ class LIFOCache(BaseCaching):
 
     def put(self, key, item):
         """Put item into the cache implementing the
-        FIFO caching algorithm"""
+        LIFO caching algorithm"""
         if key and item:
             self.cache_data[key] = item
             length = len(self.cache_data)
