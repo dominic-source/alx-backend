@@ -40,9 +40,30 @@ class Server:
         return self.__indexed_dataset
 
     def get_hyper_index(self, index: int = None, page_size: int = 10) -> Dict:
-            """Create a delition resilience pagination"""
-            
-            index = None
-            next_index = None
-            page_size = None
-            data = None
+        """Create a delition resilience pagination"""
+
+        all_data = self.indexed_dataset()
+        length = len(all_data)
+
+        assert index < length
+        index_f = index
+        next_index = index + page_size
+        page_size = page_size
+        data = []
+        i = 0
+        count = page_size
+        while i < count:
+            try:
+                data.append(all_data[i+index])
+            except KeyError:
+                count += 1
+                next_index += 1
+            i += 1
+
+        info = {
+            "index": index_f,
+            "next_index": next_index,
+            "page_size": page_size,
+            "data": data
+            }
+        return info
