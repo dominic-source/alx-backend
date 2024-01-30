@@ -21,10 +21,9 @@ class LFUCache(BaseCaching):
 
         if key and item:
             # set the counter for the cache
-            self.counter[key] = self.counter.setdefault(key, 0) + 1
-            
+            self.counter[key] = self.counter.get(key, 0) + 1
+
             # if key is present, pop it and send it to the back of the dict
-            # else None
             self.cache_data.pop(key, None)
             self.cache_data[key] = item
 
@@ -32,14 +31,13 @@ class LFUCache(BaseCaching):
 
             # if length is greater than the max number of items, do something
             if length > BaseCaching.MAX_ITEMS:
-                key_small = list(self.counter)[0]
-                print(key_small)
+                key_small = list(self.cache_data)[0]
                 value_small = self.counter[key_small]
                 for key2, value2 in self.counter.items():
                     if value2 < value_small and key2 != key:
                         value_small = value2
                         key_small = key2
-                        print(key_small, value_small)
+
                 del self.counter[key_small]
                 del self.cache_data[key_small]
                 print("DISCARD:", key_small)
@@ -47,9 +45,9 @@ class LFUCache(BaseCaching):
     def get(self, key):
         """get the data"""
         if key:
-            self.counter[key] = self.counter.setdefault(key, 0) + 1
             value = self.cache_data.get(key, None)
             if value:
+                self.counter[key] = self.counter.setdefault(key, 0) + 1
                 del self.cache_data[key]
                 self.cache_data[key] = value
             return value
