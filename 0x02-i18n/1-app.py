@@ -1,9 +1,11 @@
 from flask import Flask, render_template
 from flask_babel import Babel
 
+
 class Config:
     """config class"""
     LANGUAGES = ["en", "fr"]
+
 
 # Instantiate the flask application
 app = Flask(__name__)
@@ -17,6 +19,7 @@ app.config['BABEL_DEFAULT_TIMEZONE'] = 'UTC'
 
 # Instantiate Babel
 babel = Babel(app)
+
 
 @app.route("/", strict_slashes=False, methods=["GET"])
 def welcome_page():

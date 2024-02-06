@@ -24,9 +24,9 @@ def get_locale():
     return request.accept_languages.best_match(app.config["LANGUAGES"])
 
 
-
 # Instantiate Babel
 babel = Babel(app, locale_selector=get_locale)
+
 
 @app.route("/", strict_slashes=False, methods=["GET"])
 def welcome_page():

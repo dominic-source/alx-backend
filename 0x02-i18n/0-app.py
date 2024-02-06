@@ -2,6 +2,7 @@ from flask import Flask, render_template
 
 app = Flask(__name__)
 
+
 @app.route("/", strict_slashes=False, methods=["GET"])
 def welcome_page():
     """Welcome page for our application"""
