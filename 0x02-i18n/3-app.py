@@ -31,7 +31,7 @@ app = Flask(__name__)
 # load configuration from class config object
 app.config.from_object(Config)
 
-# Instantiate Babel
+# Instantiate Babel to manage localization and internationlization
 babel = Babel(app)
 
 

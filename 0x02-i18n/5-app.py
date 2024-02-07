@@ -12,6 +12,7 @@
 
 from flask_babel import Babel, gettext
 from flask import Flask, render_template, request, g
+from typing import Mapping
 
 
 class Config:
@@ -48,7 +49,7 @@ def get_locale() -> str:
     return request.accept_languages.best_match(app.config["LANGUAGES"])
 
 
-users = {
+users : Mapping = {
     1: {"name": "Balou", "locale": "fr", "timezone": "Europe/Paris"},
     2: {"name": "Beyonce", "locale": "en", "timezone": "US/Central"},
     3: {"name": "Spock", "locale": "kg", "timezone": "Vulcan"},
@@ -63,7 +64,7 @@ def get_user() -> str:
 
 
 @app.before_request
-def before_request():
+def before_request() -> None:
     """handle before request"""
     value = get_user()
     if value:
