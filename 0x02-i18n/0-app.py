@@ -1,3 +1,8 @@
+#!/usr/bin/env python3
+"""
+    This module helps me to learn about internalization and localization
+"""
+
 from flask import Flask, render_template
 
 app = Flask(__name__)
