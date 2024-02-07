@@ -39,8 +39,8 @@ def welcome_page():
     """Welcome page for our application"""
 
     return render_template('3-index.html',
-                           home_title="Welcome to Holberton",
-                           home_header="Hello world")
+                           home_title=_("Welcome to Holberton"),
+                           home_header=_("Hello world"))
 
 
 if __name__ == '__main__':
