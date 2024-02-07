@@ -20,8 +20,9 @@ app = Flask(__name__)
 # load configuration from class config object
 app.config.from_object(Config)
 
+
 # Instantiate Babel
-babel = Babel()
+babel = Babel(app)
 
 
 @babel.localeselector
@@ -29,9 +30,8 @@ def get_locale():
     """Get locale languages"""
     return request.accept_languages.best_match(app.config["LANGUAGES"])
 
-
 # Instantiate Babel
-babel.init_app(app)
+# babel = Babel(app, locale_selector=get_locale)
 
 
 @app.route("/", strict_slashes=False, methods=["GET"])
