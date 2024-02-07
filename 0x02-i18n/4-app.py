@@ -2,7 +2,7 @@
 """This module helps me to learn about internalization and localization
 """
 
-from flask_babel import Babel, _
+from flask_babel import Babel, gettext
 from flask import Flask, render_template, request
 
 
@@ -39,8 +39,8 @@ def welcome_page():
     """Welcome page for our application to be able to work properly
     """
 
-    title = _("Welcome to Holberton")
-    header = _("Hello world!")
+    title = gettext("Welcome to Holberton")
+    header = gettext("Hello world!")
     return render_template('4-index.html',
                            home_title=title,
                            home_header=header)
