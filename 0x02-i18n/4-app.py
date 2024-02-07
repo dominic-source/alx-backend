@@ -1,5 +1,13 @@
 #!/usr/bin/env python3
 """This module helps me to learn about internalization and localization
+
+    Config - the configuration file
+
+    get_locale:
+        return string
+
+    welcome_page:
+        return rendered html page
 """
 
 from flask_babel import Babel, gettext
