@@ -25,4 +25,3 @@ msgstr "Welcome to Holberton"
 #: 3-app.py:36
 msgid "Hello world"
 msgstr "Hello world!"
-

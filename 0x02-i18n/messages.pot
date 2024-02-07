@@ -24,4 +24,3 @@ msgstr ""
 #: 3-app.py:36
 msgid "Hello world"
 msgstr ""
-

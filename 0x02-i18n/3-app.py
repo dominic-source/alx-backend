@@ -3,8 +3,8 @@
     This module helps me to learn about internalization and localization
 """
 
-from flask import Flask, render_template, request
 from flask_babel import Babel, _
+from flask import Flask, render_template, request
 
 
 class Config:
@@ -24,11 +24,11 @@ app.config.from_object(Config)
 # Instantiate Babel
 babel = Babel(app)
 
+
 @babel.localeselector
 def get_locale():
     """Get locale languages"""
     return request.accept_languages.best_match(app.config["LANGUAGES"])
-
 
 # Instantiate Babel
 # babel = Babel(app, locale_selector=get_locale)
@@ -39,8 +39,8 @@ def welcome_page():
     """Welcome page for our application"""
 
     return render_template('3-index.html',
-                           home_title=_("Welcome to Holberton"),
-                           home_header=_("Hello world"))
+                           home_title="Welcome to Holberton",
+                           home_header="Hello world")
 
 
 if __name__ == '__main__':
