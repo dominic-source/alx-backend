@@ -16,6 +16,9 @@ from flask import Flask, render_template, request
 
 class Config:
     """config available languages for the babel
+        Language config
+        Locale config
+        Timezone config
     """
     LANGUAGES = ["en", "fr"]
     BABEL_DEFAULT_LOCALE = 'en'
@@ -28,7 +31,7 @@ app = Flask(__name__)
 # load configuration from class config object
 app.config.from_object(Config)
 
-# Instantiate Babel
+# Instantiate Babel application to start babel
 babel = Babel(app)
 
 
