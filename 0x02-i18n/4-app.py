@@ -1,7 +1,5 @@
 #!/usr/bin/env python3
-"""
-    This module helps me to learn about internalization and localization
-"""
+"""This module helps me to learn about internalization and localization"""
 
 from flask_babel import Babel, _
 from flask import Flask, render_template, request
