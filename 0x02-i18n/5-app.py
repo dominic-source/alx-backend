@@ -60,7 +60,9 @@ users: Mapping[int, Mapping[str, Union[str, None]]] = {
 def get_user() -> Union[Mapping[str, Union[str, None]], None]:
     """Get user information from the database"""
     login_info = request.args.get('login_as')
-    return users.get(int(login_info), None)
+    if login_info:
+        return users.get(int(login_info), None)
+    return None
 
 
 @app.before_request
