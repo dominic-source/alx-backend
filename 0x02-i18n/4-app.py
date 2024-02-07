@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
-"""This module helps me to learn about internalization and localization
+"""This module helps with internalization and localization of the application.
 
-    Config - the configuration file
+    Config - contains configuration settings for the application.
 
     get_locale:
-        return string
+        Returns the preferred language for the user.
 
     welcome_page:
-        return rendered html page
+        Renders and returns the HTML welcome page.
 """
 
 from flask_babel import Babel, gettext
@@ -34,7 +34,10 @@ babel = Babel(app)
 
 @babel.localeselector
 def get_locale():
-    """return language type for various users preference
+    """Determines the preferred language for the user.
+
+    Returns:
+        str: Preferred language for the user.
     """
     value = request.args.get("locale")
     if value in app.config["LANGUAGES"]:
@@ -44,7 +47,10 @@ def get_locale():
 
 @app.route("/", methods=["GET"])
 def welcome_page():
-    """Welcome page for our application to be able to work properly
+    """Renders the HTML welcome page.
+
+    Returns:
+        str: Rendered HTML welcome page.
     """
 
     title = gettext("Welcome to Holberton")
