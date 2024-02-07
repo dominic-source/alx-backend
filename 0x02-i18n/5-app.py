@@ -10,9 +10,9 @@
         Renders and returns the HTML welcome page.
 """
 
-from flask_babel import Babel, gettext
+from flask_babel import Babel
 from flask import Flask, render_template, request, g
-from typing import Mapping
+from typing import Mapping, Union
 
 
 class Config:
@@ -37,7 +37,7 @@ babel = Babel(app)
 
 
 @babel.localeselector
-def get_locale() -> str:
+def get_locale() -> Union[str, None]:
     """Determines the preferred language for the user.
 
     Returns:
@@ -49,7 +49,7 @@ def get_locale() -> str:
     return request.accept_languages.best_match(app.config["LANGUAGES"])
 
 
-users: Mapping = {
+users: Mapping[int, Mapping[str, Union[str, None]]] = {
     1: {"name": "Balou", "locale": "fr", "timezone": "Europe/Paris"},
     2: {"name": "Beyonce", "locale": "en", "timezone": "US/Central"},
     3: {"name": "Spock", "locale": "kg", "timezone": "Vulcan"},
@@ -57,7 +57,7 @@ users: Mapping = {
 }
 
 
-def get_user() -> str:
+def get_user() -> Union[Mapping[str, Union[str, None]], None]:
     """Get user information from the database"""
     login_info = request.args.get('login_as')
     return users.get(int(login_info), None)
