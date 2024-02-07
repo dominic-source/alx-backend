@@ -33,10 +33,11 @@ def get_locale():
 @app.route("/", strict_slashes=False, methods=["GET"])
 def welcome_page():
     """Welcome page for our application"""
-
+    title = _("Welcome to Holberton")
+    header = _("Hello world!")
     return render_template('3-index.html',
-                           home_title=_("Welcome to Holberton"),
-                           home_header=_("Hello world"))
+                           home_title=title,
+                           home_header=header)
 
 
 if __name__ == '__main__':
