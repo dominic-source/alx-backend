@@ -10,7 +10,7 @@
         Renders and returns the HTML welcome page.
 """
 
-from flask_babel import Babel, gettext
+from flask_babel import Babel
 from flask import Flask, render_template, request
 
 
@@ -36,7 +36,7 @@ babel = Babel(app)
 
 
 @babel.localeselector
-def get_locale():
+def get_locale() -> str:
     """Determines the preferred language for the user.
 
     Returns:
@@ -49,18 +49,13 @@ def get_locale():
 
 
 @app.route("/", methods=["GET"])
-def welcome_page():
+def welcome_page() -> str:
     """Renders the HTML welcome page.
 
     Returns:
         str: Rendered HTML welcome page.
     """
-
-    title = gettext("Welcome to Holberton")
-    header = gettext("Hello world!")
-    return render_template('4-index.html',
-                           home_title=title,
-                           home_header=header)
+    return render_template('4-index.html')
 
 
 if __name__ == '__main__':
