@@ -13,6 +13,8 @@
 from flask_babel import Babel
 from flask import Flask, render_template, request, g
 from typing import Mapping, Union
+import pytz
+from datetime import datetime
 
 
 class Config:
@@ -42,6 +44,32 @@ users: Mapping[int, Mapping[str, Union[str, None]]] = {
     3: {"name": "Spock", "locale": "kg", "timezone": "Vulcan"},
     4: {"name": "Teletubby", "locale": None, "timezone": "Europe/London"},
 }
+
+
+@babel.timezoneselector
+def get_timezone() -> str:
+    """Determine the preferred timezone for the user"""
+
+    # Get timezone from url parameters
+    value = request.args.get("timezone")
+    if value:
+        try:
+            pytz.timezone(value)
+            return value
+        except pytz.exceptions.UnknownTimeZoneError:
+            return None
+
+    # Get timezone from user setting
+    if g.user:
+        try:
+            value = g.user["timezone"]
+            pytz.timezone(value)
+            return value
+        except pytz.exceptions.UnknownTimeZoneError:
+            return None
+
+    # Use default timezone
+    return app.config["BABEL_DEFAULT_TIMEZONE"]
 
 
 @babel.localeselector
@@ -95,7 +123,7 @@ def welcome_page() -> str:
     Returns:
         str: Rendered HTML welcome page.
     """
-    return render_template('6-index.html')
+    return render_template('7-index.html')
 
 
 if __name__ == '__main__':
