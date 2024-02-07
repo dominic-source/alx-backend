@@ -1,12 +1,14 @@
 #!/usr/bin/env python3
-"""This module helps me to learn about internalization and localization"""
+"""This module helps me to learn about internalization and localization
+"""
 
 from flask_babel import Babel, _
 from flask import Flask, render_template, request
 
 
 class Config:
-    """config available languages for the babel"""
+    """config available languages for the babel
+    """
     LANGUAGES = ["en", "fr"]
     BABEL_DEFAULT_LOCALE = 'en'
     BABEL_DEFAULT_TIMEZONE = 'UTC'
@@ -34,7 +36,8 @@ def get_locale():
 
 @app.route("/", methods=["GET"])
 def welcome_page():
-    """Welcome page for our application to be able to work properly"""
+    """Welcome page for our application to be able to work properly
+    """
 
     title = _("Welcome to Holberton")
     header = _("Hello world!")
