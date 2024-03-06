@@ -6,4 +6,4 @@ const client = createClient()
   })
   .on('ready', () => {
     console.log('Redis client connected to the server');
-  })
+  });
