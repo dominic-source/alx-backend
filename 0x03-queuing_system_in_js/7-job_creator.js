@@ -2,7 +2,7 @@ import kue from 'kue';
 
 const jobs = [
   {
-    phoneNumber: '4153518780999999',
+    phoneNumber: '4153518780',
     message: 'This is the code 1234 to verify your account'
   },
   {
@@ -60,7 +60,7 @@ for (const data of jobs) {
     console.log(`Notification job ${job.id} completed`);
   })
   .on('failed', (errMessage) => {
-    console.log(`Notification job JOB_ID failed: ${errMessage}`);
+    console.log(`Notification job ${job.id} failed: ${errMessage}`);
   })
   .on('progress', (progress, data) => {
     console.log(`Notification job ${job.id} ${progress}% complete`);
